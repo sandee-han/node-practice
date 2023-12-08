@@ -1,6 +1,7 @@
-// express 라이브러리 쓸거임
+// lib & framework
 const exp = require('constants');
 const express = require('express');
+const dotenv = require('dotenv');
 
 // 객체 생성
 const app = express();
@@ -13,12 +14,17 @@ app.listen(portNumber, () => console.log(`${portNumber}포트입니다.`));
 
 app.use(express.urlencoded({extended: true}));
 
-require('dotenv').config({path:"/src/board/env/.env.development"});
+// 환경변수 불러오기
+dotenv.config();
 
 var mongodbUser = process.env.DB_USER;
 var mongodbPassword = process.env.DB_PASSWORD;
 
-var connectMongooseUrl = 'mongodb+srv://' + mongodbUser + ':' + mongodbPassword + '@cluster0.xxknzkk.mongodb.net/?retryWrites=true&w=majority';
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASSWORD);
+
+var connectMongooseUrl = 'mongodb+srv://' + mongodbUser + ':' + mongodbPassword + 
+                            '@cluster0.xxknzkk.mongodb.net/?retryWrites=true&w=majority';
 
 // 몽구스 연결
 const mongoose = require('mongoose');
