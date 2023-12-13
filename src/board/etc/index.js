@@ -23,6 +23,12 @@ app.get('/sound/:name', (req, res) => {
 
 })
 
+app.get('/', function (request, response) {
+    // __dirname 을 써서 디렉토리 설정 후 html 소환!
+    response.sendfile(__dirname + '/index.html')
+});
+
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
